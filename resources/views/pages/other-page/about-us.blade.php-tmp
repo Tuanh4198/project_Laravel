@@ -1,0 +1,142 @@
+@extends('layout')
+@section('content')
+<section class="page-content">
+	<div class="container">
+		<div class="path">
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li>About Us</li>
+			</ul>
+		</div>
+		<!-- page content shared -->
+		<div class="about-us">
+			<div class="banner-about-us">
+				<img src="images/inner-pages/banner/about_us.png">
+			</div>
+			<article class="facts">
+				<h3 class="about-us-title">Interesting Facts</h3>
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy text ever since the 1500s, when an unknown printer took a galley of type</p>
+				<div class="achievements">
+					<div class="achievements-box">
+						<h1>10000</h1>
+						<h6>Items in Store</h6>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy text ever since the 1500s...</p>
+					</div>
+					<div class="achievements-box">
+						<h1>90%</h1>
+						<h6>Our Customers comeback</h6>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy text ever since the 1500s...</p>
+					</div>
+					<div class="achievements-box">
+						<h1>2 million</h1>
+						<h6>User of the site</h6>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy text ever since the 1500s...</p>
+					</div>
+				</div>
+			</article>
+			<!--  -->
+			<article class="teams">
+				<h3 class="about-us-title">My Teams</h3>
+				<div class="people-information">
+					<div class="staff">
+						<div class="staff-img">
+							<a href="#"><img src="images/inner-pages/employee/pp1.png"></a>
+						</div>
+						<div class="staff-infor">
+							<strong class="name-staff">Tuanh</strong>
+							<span class="work">- Director</span>
+						</div>
+						<p class="introduce-staff">Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
+					</div>
+					<div class="staff">
+						<div class="staff-img">
+							<a href="#"><img src="images/inner-pages/employee/pp2.png"></a>
+						</div>
+						<div class="staff-infor">
+							<strong class="name-staff">Lucian</strong>
+							<span class="work">- Manager</span>
+						</div>
+						<p class="introduce-staff">Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
+					</div>
+					<div class="staff">
+						<div class="staff-img">
+							<a href="#"><img src="images/inner-pages/employee/pp3.png"></a>
+						</div>
+						<div class="staff-infor">
+							<strong class="name-staff">NuNu</strong>
+							<span class="work">- Marketer</span>
+						</div>
+						<p class="introduce-staff">Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
+					</div>
+					<div class="staff">
+						<div class="staff-img">
+							<a href="#"><img src="images/inner-pages/employee/pp4.png"></a>
+						</div>
+						<div class="staff-infor">
+							<strong class="name-staff">Braum</strong>
+							<span class="work">- Member</span>
+						</div>
+						<p class="introduce-staff">Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
+					</div>
+				</div>
+				<!-- end people -->
+			</article>
+			<!--  -->
+			<article class="more-information-company">
+				<div class="orientation">
+					<div class="orientation-box">
+						<h3 class="about-us-title">What we really do? </h3>
+						<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,</p>
+					</div>
+					<div class="orientation-box">
+						<h3 class="about-us-title">Our Vision </h3>
+						<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,</p>
+					</div>
+					<div class="orientation-box">
+						<h3 class="about-us-title">History of the Company </h3>
+						<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,</p>
+					</div>
+					<div class="orientation-box">
+						<h3 class="about-us-title">Cooperate with Us! </h3>
+						<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,</p>
+					</div>
+				</div>
+				<!--  -->
+				<div class="support-option">
+					<h3 class="about-us-title">What we can do for you</h3>
+					<ul class="list-support-option accordion">
+						<li>
+							<div class="show-option">
+								<div class="show">+</div>
+								<div class="name-option">Support 24/7</div>
+							</div>
+							<p class="fretboard">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+						</li>
+						<li>
+							<div class="show-option">
+								<div class="show">+</div>
+								<div class="name-option">Best Quanlity</div>
+							</div>
+							<p class="fretboard">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+						</li>
+						<li>
+							<div class="show-option">
+								<div class="show">+</div>
+								<div class="name-option">Fastest Delivery</div>
+							</div>
+							<p class="fretboard">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+						</li>
+						<li>
+							<div class="show-option">
+								<div class="show">+</div>
+								<div class="name-option">Customer Care</div>
+							</div>
+							<p class="fretboard">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+						</li>
+					</ul>
+				</div>
+			</article>
+		</div>
+	</div>
+</section>
+@endsection

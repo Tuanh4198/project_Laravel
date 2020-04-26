@@ -1,0 +1,46 @@
+@extends('admin_layout')
+@section('admin_content')
+<div class="row">
+	<div class="col-lg-12">
+		<section class="panel">
+			<header class="panel-heading">EDIT BLOG</header>
+			<div class="panel-body">
+				@foreach($edit_blog as $key => $edit_value)
+				<div class="position-center">
+					<form role="form" action="{{URL::to('/update-blog/'.$edit_value->blog_id)}}" method="post" enctype="multipart/form-data">
+						{{ csrf_field() }}
+						<div class="form-group">
+							<label for="exampleInputEmail1">Blog name</label>
+							<input type="text" name="blog_name" class="form-control" id="exampleInputEmail1" placeholder="Enter name blog" value="{{$edit_value->blog_name}}">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Blog image</label>
+							<input type="file" name="blog_image" class="form-control" id="exampleInputEmail1" placeholder="Enter name product">
+							<img src="{{URL::to('public/upload/blog/'.$edit_value->blog_image)}}" width="100" height="100">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Content</label>
+							<textarea name="blog_content" class="form-control" id="editor1" rows="5" style="resize: none;">{{$edit_value->blog_content}}</textarea>
+						</div>
+						<button type="submit" name="add-blog" class="btn btn-info">UPDATE</button>				
+						<input type="reset" value="Reset" class="btn btn-info"/>	
+					</form>
+					<?php
+						$message = Session::get('message');
+						if($message){
+							echo '<span class="txt-alert" style="color:#27c24c;">',$message.'</span>';
+							Session::put('message',null);
+						}
+					?>
+				</div>
+				@endforeach
+			</div>
+		</section>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		CKEDITOR.replace( 'editor1' );
+    });
+</script>
+@endsection

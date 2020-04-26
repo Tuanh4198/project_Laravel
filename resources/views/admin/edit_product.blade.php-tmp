@@ -1,0 +1,74 @@
+@extends('admin_layout')
+@section('admin_content')
+<div class="row">
+	<div class="col-lg-12">
+		<section class="panel">
+			<header class="panel-heading">EDIT PRODUCT</header>
+			<div class="panel-body">
+				@foreach($edit_product as $key => $edit_value)
+				<div class="position-center">
+<?php
+$message = Session::get('message');
+if ($message) {
+	echo '<span class="txt-alert" style="color:#27c24c;">', $message.'</span>';
+
+	Session::put('message', null);
+}
+?>
+					<form role="form" action="{{URL::to('/update-product/'.$edit_value->product_id)}}" method="post" enctype="multipart/form-data">
+						{{ csrf_field() }}
+						<div class="form-group">
+							<label for="exampleInputEmail1">Product name</label>
+							<input type="text" name="product_name" class="form-control" id="exampleInputEmail1"  value="{{$edit_value->product_name}}">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Product image</label>
+							<input type="file" name="product_img" class="form-control" id="exampleInputEmail1" placeholder="Enter name product">
+							<img src="{{URL::to('public/upload/product/'.$edit_value->product_image)}}" width="100" height="100">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Product price</label>
+							<input type="text" name="product_price" class="form-control" id="exampleInputEmail1"  value="{{$edit_value->product_price}}">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Describe</label>
+							<textarea name="product_describe" class="form-control" id="exampleInputPassword1" rows="5" style="resize: none;">{{$edit_value->product_desc}}</textarea>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Content</label>
+							<textarea name="product_content" class="form-control" id="exampleInputPassword1" rows="5" style="resize: none;">{{$edit_value->product_content}}</textarea>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Category product</label>
+							<select name="category_id" class="form-control input-sm m-bot15">
+								@foreach($category_name as $key => $cate)
+									@if($cate->category_id == $edit_value->category_id)
+                                		<option selected value="{{$cate->category_id}}">{{$cate->category_name}}</option>
+                                	@else
+                                		<option value="{{$cate->category_id}}">{{$cate->category_name}}</option>
+                                	@endif
+                                @endforeach
+                            </select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Brand product</label>
+							<select name="brand_id" class="form-control input-sm m-bot15">
+								@foreach($brand_name as $key => $bra)
+									@if($bra->brand_id == $edit_value->brand_id)
+                                		<option selected value="{{$bra->brand_id}}">{{$bra->brand_name}}</option>
+									@else
+										<option value="{{$bra->brand_id}}">{{$bra->brand_name}}</option>
+									@endif
+								@endforeach
+                            </select>
+						</div>
+						<button type="submit" name="add-category" class="btn btn-info">UPDATE</button>
+						<input type="reset" value="Reset" class="btn btn-info"/>
+					</form>
+				</div>
+				@endforeach
+			</div>
+		</section>
+	</div>
+</div>
+@endsection

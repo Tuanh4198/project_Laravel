@@ -1,0 +1,78 @@
+@extends('admin_layout')
+@section('admin_content')
+<div class="table-agile-info">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			CUSTOMER INFORMATION
+		</div>
+		<?php
+			$message = Session::get('message');
+			if($message){
+				echo '<span class="txt-alert" style="margin-top: 10px; letter-spacing: 1px; color:#27c24c;">',$message.'</span>';
+				Session::put('message',null);
+			}
+		?>
+		<div class="table-responsive">
+			<table class="table table-striped b-t b-light">
+				<thead>
+					<tr>
+						<th style="width: 15%">Customer name</th>
+						<th style="width: 30%">Customer address</th>
+						<th style="width: 15%">Customer phone</th>
+						<th style="width: 25%">Note</th>
+						<th style="width: 15%">total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="c_i">
+						<td>
+							<span class="text-ellipsis">{{ $customer_by_id->customer_name }}</span>
+						</td>
+						<td>{{ $customer_by_id->shipping_address }}</td>
+						<td>{{ $customer_by_id->shipping_phone }}</td>
+						<td>{{ $customer_by_id->shipping_note }}</td>
+						<td>{{ $customer_by_id->order_total }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="table-agile-info">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			VIEW ORDER DETAIL
+		</div>
+		<?php
+			$message = Session::get('message');
+			if($message){
+				echo '<span class="txt-alert" style="margin-top: 10px; letter-spacing: 1px; color:#27c24c;">',$message.'</span>';
+				Session::put('message',null);
+			}
+		?>
+		<div class="table-responsive">
+			<table class="table table-striped b-t b-light">
+				<thead>
+					<tr>
+						<th style="width: 25%">Product name</th>
+						<th style="width: 25%">Product price</th>
+						<th style="width: 25%">Quantity</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($order_by_id as $key => $p_content)
+					<tr>
+						<td>
+							<span class="text-ellipsis">{{ $p_content->product_name }}</span>
+						</td>
+						<td>{{ $p_content->product_price }}</td>
+						<td>{{ $p_content->product_sale_qty }}</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+@endsection

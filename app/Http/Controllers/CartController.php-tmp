@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Cart;
+use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+session_start();
+
+class CartController extends Controller {
+	public function save_cart(Request $request) {
+		$productid    = $request->productid_hidden;
+		$quantity     = $request->qty;
+		$product_info = DB::table('tbl_product')->where('product_id', $productid)->first();
+
+		$data['id']               = $product_info->product_id;
+		$data['qty']              = $quantity;
+		$data['name']             = $product_info->product_name;
+		$data['price']            = $product_info->product_price;
+		$data['options']['image'] = $product_info->product_image;
+		$data['weight']           = $product_info->product_price;
+
+		Cart::add($data);
+
+		return Redirect::to('/show-cart');
+	}
+
+	public function show_cart() {
+		$category_name = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'desc')->get();
+		$brand_name    = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_name', 'desc')->get();
+		return view('pages.cart.show_cart')->with('category', $category_name)->with('brand', $brand_name);
+	}
+
+	public function delete_cart($rowId) {
+		Cart::update($rowId, 0);
+		return Redirect::to('/show-cart');
+	}
+
+	public function qty_cart(Request $request) {
+		$qty   = $request->quantity;
+		$rowid = $request->rowId_cart;
+		Cart::update($rowid, $qty);
+		return Redirect::to('/show-cart');
+	}
+}
+
+// ( [items:protected] => Array ( [8cbf215baa3b757e910e5305ab981172] => Gloudemans\Shoppingcart\
+// 	CartItem Object (
+// 		[rowId] => 8cbf215baa3b757e910e5305ab981172
+// 		[id] => 293ad
+// 		[qty] => 1
+// 		[name] => Product 1
+// 		[price] => 9.99
+// 		[weight] => 550
+// 		[options] => Gloudemans\Shoppingcart\CartItemOptions Object ( [items:protected] => Array ( ) )
+// 		[taxRate] => 21
+// 		[associatedModel:Gloudemans\Shoppingcart\CartItem:private] => [discountRate:Gloudemans\Shoppingcart\CartItem:private] => 0 ) ) )
