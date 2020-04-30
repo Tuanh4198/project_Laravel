@@ -109,23 +109,19 @@
                     <caption>YOUR ORDER</caption>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Shipping address</th>
-                            <th></th>
+                            <th>Order ID</th>
+                            <th>Total</th>
+                            <th>Order status</th>
+                            <th>Date</th>
                         </tr>
-                    </thead>
+                    </thead> 
                     <tbody>
-                    @foreach($customer as $key => $ct )
-                        <tr>
-                            <td>{{  $ct->customer_name }}</td>
-                            <td>{{  $ct->customer_phone }}</td>
-                            <td>{{  $ct->customer_email }}</td>
-                            <td>{{  $ct->customer_address }}</td>
-                            <td>
-                                <button class="btn btn-primary" style="margin: 0;"> <a href="#" style="color: white;">Change</a> </button>
-                            </td>
+                    @foreach($order as $key => $or )
+                        <tr style="border-bottom: 1px solid whitesmoke;">
+                            <td>{{  $or->order_id }}</td>
+                            <td>{{  $or->order_total }}</td>
+                            <td>{{  $or->order_status }}</td>
+                            <td>{{  $or->created_at }}</td>
                         </tr>
                     @endforeach
                     </tbody>

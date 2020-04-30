@@ -155,7 +155,7 @@ class CheckoutController extends Controller
         $list_order = DB::table('tbl_order')
         ->join('tbl_customer','tbl_order.customer_id','=','tbl_customer.customer_id')
         ->select('tbl_order.*','tbl_customer.customer_name')
-		->orderby('tbl_order.order_id','desc')->get();
+		->orderby('tbl_order.order_id','desc')->paginate(10);
 		
 		$meta_desc = "Shiseido offers the highest quality products in brightening and anti-aging skincare, makeup and fragrance with 145 years of technology. Free samples everyday, every order. Shiseido";
         $meta_keywords = "Shiseido";
@@ -176,7 +176,6 @@ class CheckoutController extends Controller
         ->select('tbl_order.*','tbl_customer.*','tbl_shipping.*','tbl_order_detail.*')
         ->where('tbl_order.order_id',$order_id)
         ->orderby('tbl_order.order_id','desc')->get();
-
         $customer_by_id = DB::table('tbl_order')
         ->join('tbl_customer','tbl_order.customer_id','=','tbl_customer.customer_id')
         ->join('tbl_shipping','tbl_order.shipping_id','=','tbl_shipping.shipping_id')
@@ -184,14 +183,11 @@ class CheckoutController extends Controller
         ->select('tbl_order.*','tbl_customer.*','tbl_shipping.*','tbl_order_detail.*')
         ->where('tbl_order.order_id',$order_id)
         ->orderby('tbl_order.order_id','desc')->first();
-
 		$manage_order_byid = view('admin.view_order')->with('order_by_id',$order_by_id)->with('customer_by_id',$customer_by_id);
-		
 		$meta_desc = "Shiseido offers the highest quality products in brightening and anti-aging skincare, makeup and fragrance with 145 years of technology. Free samples everyday, every order. Shiseido";
         $meta_keywords = "Shiseido";
         $url_canonical = $request->url();
 		$meta_title = "SHISEIDO | View order";
-		
         return view('admin_layout')->with('admin.view_order',$manage_order_byid)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('url_canonical', $url_canonical)->with('meta_title', $meta_title);
 	}
 	
@@ -199,13 +195,14 @@ class CheckoutController extends Controller
 		$category_name = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_name','desc')->get();
         $brand_name = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_name','desc')->get();
 		$customer = DB::table('tbl_customer')->where('customer_id',$ct_id)->get();
+		$order = DB::table('tbl_order')->where('customer_id',$ct_id)->get();
 
 		$meta_desc = "Shiseido offers the highest quality products in brightening and anti-aging skincare, makeup and fragrance with 145 years of technology. Free samples everyday, every order. Shiseido";
         $meta_keywords = "Shiseido";
         $url_canonical = $request->url();
 		$meta_title = "SHISEIDO | Customer information";
 		
-    	return view('pages.login-checkout.customer-infor')->with('category',$category_name)->with('brand',$brand_name)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('url_canonical', $url_canonical)->with('meta_title', $meta_title)->with('customer', $customer);
+    	return view('pages.login-checkout.customer-infor')->with('category',$category_name)->with('brand',$brand_name)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('url_canonical', $url_canonical)->with('meta_title', $meta_title)->with('customer', $customer)->with('order', $order);
 	}
 
 	public function new_customer(Request $request){

@@ -28,7 +28,7 @@ class CategoryProduct extends Controller
 
     public function list_category(){
         $this->authlogin();
-    	$list_category = DB::table('tbl_category_product')->get();
+    	$list_category = DB::table('tbl_category_product')->paginate(5);
     	$manage_category = view('admin.list_category')->with('list_category',$list_category);
     	return view('admin_layout')->with('admin.list_category',$manage_category);
     }

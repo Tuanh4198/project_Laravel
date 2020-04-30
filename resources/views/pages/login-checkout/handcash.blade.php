@@ -10,7 +10,7 @@
 		</div><!--/breadcrums-->
 		<div class="heading">
 			<h3>We will send goods to you quickly, thanks you for use service in store!!!</h3>
-			<h3>Click <a href="{{URL::to('/homepage')}}">here</a> to continue shopping </h3>
+			<h3>Click <a href="{{URL::to('/homepage')}}" style="color: #d9534f; text-transform: uppercase;">here</a> to continue shopping </h3>
 		</div>
 	</div>
 </section> <!--/#cart_items-->

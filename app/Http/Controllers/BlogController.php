@@ -28,7 +28,7 @@ class BlogController extends Controller
 
     public function list_blog(){
         $this->authlogin();
-    	$list_blog = DB::table('tbl_blog')->get();
+    	$list_blog = DB::table('tbl_blog')->paginate(5);
     	$manage_blog = view('admin.list_blog')->with('list_blog',$list_blog);
     	return view('admin_layout')->with('admin.list_blog',$manage_blog);
     }
@@ -129,7 +129,7 @@ class BlogController extends Controller
     public function show_blog(Request $request){
     	$category_name = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_name','desc')->get();
         $brand_name = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_name','desc')->get();
-        $all_blog = DB::table('tbl_blog')->where('blog_status','1')->orderby('blog_id','desc')->limit(6)->get();
+        $all_blog = DB::table('tbl_blog')->where('blog_status','1')->orderby('blog_id','desc')->paginate(3);
 
         $meta_desc = "Beauty from our world to yours Shiseido";
         $meta_keywords = "Shiseido";

@@ -12,21 +12,14 @@
             data-speed="500"
             data-autoplay="true"
             data-dots='true'
-            data-space="20"
+            data-space="200"
             data-next-Arrow='.control-slider .right'
             data-prev-Arrow='.control-slider .left'>
+            @foreach($all_slide as $key => $sl )
             <div class="item">
-                <a href="#"><img src="{{asset('public/frontend/images/home/slide2.jpg')}}" class="girl img-responsive" alt="" /></a>
+                <a href="#"><img src="{{URL::to('public/upload/slide/'.$sl->slide_img)}}" class="girl img-responsive" alt="" /></a>
             </div>
-            <div class="item">
-                <a href="#"><img src="{{asset('public/frontend/images/home/slide1.jpg')}}" class="girl img-responsive" alt="" /></a>
-            </div>                     
-            <div class="item">
-                <a href="#"><img src="{{asset('public/frontend/images/home/slide3.jpg')}}" class="girl img-responsive" alt="" /></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="{{asset('public/frontend/images/home/slide4.jpg')}}" class="girl img-responsive" alt="" /></a>
-            </div>
+            @endforeach
         </div>
         <div class="control-slider">
             <a class="left control-carousel hidden-xs" data-slide="prev">
@@ -102,7 +95,7 @@
             <div class="features_items">
                 <h2 class="title text-center">Features Products</h2>
                 @foreach($product as $key => $pro )
-                    <div class="col-sm-4 wow zoomIn">
+                    <div class="col-sm-3 wow zoomIn">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">

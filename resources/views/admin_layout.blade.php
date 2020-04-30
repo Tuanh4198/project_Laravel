@@ -156,6 +156,12 @@
                                 <li><a href="{{URL::to('/list-blog')}}">List blocg</a></li>
                             </ul>
                         </li>
+                        <li class="sub-menu">
+                            <a href="{{URL::to('/view-slide')}}">
+                                <i class="fa fa-slideshare"></i>
+                                <span>Slider</span>
+                            </a>
+                        </li>
                         <?php if($polici == 1){ ?>
                         <li class="sub-menu">
                             <a href="javascript:;">

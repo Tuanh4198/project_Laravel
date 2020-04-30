@@ -28,7 +28,7 @@ class BrandProduct extends Controller
 
     public function list_brand(){
         $this->authlogin();
-    	$list_brand = DB::table('tbl_brand_product')->get();
+    	$list_brand = DB::table('tbl_brand_product')->paginate(5);
     	$manage_brand = view('admin.list_brand')->with('list_brand',$list_brand);
         $product = DB::table('tbl_product')->count();
         $brand = DB::table('tbl_brand_product')->count();

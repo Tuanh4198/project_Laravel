@@ -14,7 +14,9 @@ class HomeController extends Controller
     	$category_name = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_name','desc')->get();
         $brand_name = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_name','desc')->get();
 
-        $all_product = DB::table('tbl_product')->where('product_status','1')->orderby('product_id','desc')->limit(6)->get();
+        $all_product = DB::table('tbl_product')->where('product_status','1')->orderby('product_id','desc')->limit(8)->get();
+
+        $all_slide = DB::table('tbl_slide')->where('slide_status','1')->orderby('slide_id','desc')->get();
 
         $tab1 = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
@@ -41,7 +43,7 @@ class HomeController extends Controller
         $url_canonical = $request->url();
         $meta_title = "SHISEIDO | Skincare, Makeup & Fragrance";
 
-    	return view('pages.home')->with('category',$category_name)->with('brand',$brand_name)->with('product',$all_product)->with('tab1', $tab1)->with('tab2', $tab2)->with('tab3', $tab3)->with('tab4', $tab4)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('url_canonical', $url_canonical)->with('meta_title', $meta_title);
+    	return view('pages.home')->with('category',$category_name)->with('brand',$brand_name)->with('product',$all_product)->with('tab1', $tab1)->with('tab2', $tab2)->with('tab3', $tab3)->with('tab4', $tab4)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('url_canonical', $url_canonical)->with('meta_title', $meta_title)->with('all_slide', $all_slide); 
     }
 
     public function seaarch(Request $request){

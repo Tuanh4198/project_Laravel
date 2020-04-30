@@ -99,6 +99,12 @@ Route::get('/unactive-blog/{bl_id}', 'BlogController@unactive_blog');
 Route::get('/delete-blog/{bl_id}', 'BlogController@delete_blog');
 Route::get('/edit-blog/{bl_id}', 'BlogController@edit_blog');
 Route::post('/update-blog/{bl_id}', 'BlogController@update_blog');
+// slide
+Route::get('/view-slide', 'SlideController@view_slide');
+Route::post('/save-slide', 'SlideController@save_slide');
+Route::get('/active-slide/{sl_id}', 'SlideController@active_slide');
+Route::get('/unactive-slide/{sl_id}', 'SlideController@unactive_slide');
+Route::get('/delete-slide/{sl_id}', 'SlideController@delete_slide');
 // product
 Route::get('/add-product', 'ProductController@add_product');
 Route::get('/list-product', 'ProductController@list_product');
@@ -119,6 +125,6 @@ Route::get('/delete-coupon/{cp_id}', 'CouponController@delete_coupon');
 Route::get('/edit-coupon/{cp_id}', 'CouponController@edit_coupon');
 Route::post('/update-code/{cp_id}', 'CouponController@update_code');
 
-// php artisan make:controller CouponController
-// php artisan make:migration create_tbl_counpon --create=tbl_coupon
+// php artisan make:controller SlideController
+// php artisan make:migration create_tbl_slide --create=tbl_slide
 // php artisan migrate
