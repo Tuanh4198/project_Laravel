@@ -17,6 +17,7 @@ Route::get('/contact-un', 'HomeController@contact_un');
 Route::get('/contact-us/{ct_id}', 'HomeController@contact_us');
 Route::get('/about-us', 'HomeController@about_us');
 Route::get('/customer-infor/{ct_id}', 'CheckoutController@customer_infor');
+
 // blog
 Route::get('/blogpage', 'BlogController@show_blog');
 Route::get('/blog-content/{bl_id}', 'BlogController@blog_content');
@@ -51,7 +52,8 @@ Route::get('/view-order/{order_id}', 'CheckoutController@view_order');
 Route::post('/save-comment', 'ProductController@save_comment');
 // messenger 
 Route::post('/send-mess', 'HomeController@send_mess');
-
+// counpon
+Route::post('/check-coupon', 'CartController@check_coupon');
 
 
 // ==== Backend ====
@@ -106,9 +108,17 @@ Route::get('/unactive-product/{pro_id}', 'ProductController@unactive_product');
 Route::get('/delete-product/{pro_id}', 'ProductController@delete_product');
 Route::get('/edit-product/{pro_id}', 'ProductController@edit_product');
 Route::post('/update-product/{pro_id}', 'ProductController@update_product');
-// méage
+// mesager
 Route::get('/mesage-customer', 'AdminController@mesage_customer');
+//order
+Route::get('/ship-order/{or_id}', 'CheckoutController@ship_order');
+// code
+Route::get('/discount-code', 'CouponController@discount_code');
+Route::post('/save-code', 'CouponController@save_code');
+Route::get('/delete-coupon/{cp_id}', 'CouponController@delete_coupon');
+Route::get('/edit-coupon/{cp_id}', 'CouponController@edit_coupon');
+Route::post('/update-code/{cp_id}', 'CouponController@update_code');
 
-// db
-// php artisan make:migration create_tbl_messenger --create=tbl_messenger
+// php artisan make:controller CouponController
+// php artisan make:migration create_tbl_counpon --create=tbl_coupon
 // php artisan migrate

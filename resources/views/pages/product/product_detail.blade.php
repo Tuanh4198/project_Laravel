@@ -128,14 +128,8 @@
 								@foreach($comment as $key => $cmt)
 								<div class="user" style="margin-bottom: 20px; padding: 10px; background-color: #F0F0E9; border-radius: 10px;">
 									<ul style="background-color: #F0F0E9; margin-bottom: 5px; padding-bottom: 5px; border-bottom: 1px solid #e3e2e2 ">
-										<li><a href=""><b><i class="fa fa-user"></i> {{ $cmt->customer_name }} </b></a></li>
+										<li><b><i class="fa fa-user"></i> {{ $cmt->customer_name }} </b></li>
 										<?php $datetime = $cmt->created_at; ?>
-										<li><a href=""><i class="fa fa-calendar-o"></i> 
-											<?php echo date("F j, Y"); ?> 
-										</a></li>
-										<li><a href=""><i class="fa fa-clock-o"></i>
-											<?php echo date(" g:i");; ?> 
-										</a></li>
 									</ul>
 									<p> {{ $cmt->comment_content }} </p>
 								</div>

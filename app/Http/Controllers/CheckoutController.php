@@ -29,9 +29,7 @@ class CheckoutController extends Controller
     public function checkout(Request $request, $ct_id){
     	$category_name = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_name','desc')->get();
 		$brand_name = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_name','desc')->get();
-
 		$customer = DB::table('tbl_customer')->where('customer_id',$ct_id)->get();
-
 		$meta_desc = "Shiseido offers the highest quality products in brightening and anti-aging skincare, makeup and fragrance with 145 years of technology. Free samples everyday, every order. Shiseido";
         $meta_keywords = "Shiseido";
         $url_canonical = $request->url();
@@ -93,20 +91,25 @@ class CheckoutController extends Controller
     }
     
     public function order_place(Request $request){
-		$patment_data = array();
-		$patment_data['payment_method'] = $request->payment_option;
-		$patment_data['payment_status'] = 'Pending';
 		$meta_desc = "Shiseido offers the highest quality products in brightening and anti-aging skincare, makeup and fragrance with 145 years of technology. Free samples everyday, every order. Shiseido";
         $meta_keywords = "Shiseido";
-        $url_canonical = $request->url();
+		$url_canonical = $request->url();
         $meta_title = "SHISEIDO | Order place";
+
+		$patment_data = array();
+		$patment_data['payment_method'] = $request->payment_option;
+		$discount = $request->discount;
+		$code = $request->coupon_code;
+		$patment_data['payment_status'] = 'Pending';
+
 		if($patment_data['payment_method'] != ''){
 			$payment_id = DB::table('tbl_payment')->insertGetId($patment_data);
 			$order_data = array();
+			// $update_qty_data = array();
 			$order_data['customer_id'] = Session::get('customer_id');
 			$order_data['shipping_id'] = Session::get('shipping_id');
 			$order_data['payment_id'] = $payment_id;
-			$order_data['order_total'] = Cart::total();
+			$order_data['order_total'] = (Cart::total()-$discount);
 			$order_data['order_status'] = 'Pending';
 			$order_id = DB::table('tbl_order')->insertGetId($order_data);
 			$content = Cart::content();
@@ -118,7 +121,10 @@ class CheckoutController extends Controller
 				$order_d['product_price'] = $value->price;
 				$order_d['product_sale_qty'] = $value->qty;
 				DB::table('tbl_order_detail')->insert($order_d);
+				DB::table('tbl_product')->where('product_id',$value->id)->decrement('product_qty', $value->qty);
 			}
+			Session::forget('coupon');
+			DB::table('tbl_coupon')->where('coupon_code',$code)->decrement('coupon_qty', 1);
 			if($patment_data['payment_method'] == 'ATM'){
 				echo 'ATM';
 			}elseif($patment_data['payment_method'] == 'money'){
@@ -213,5 +219,10 @@ class CheckoutController extends Controller
 		
     	return view('pages.login-checkout.newacc')->with('category',$category_name)->with('brand',$brand_name)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('url_canonical', $url_canonical)->with('meta_title', $meta_title);
 	}
-
+	
+	public function ship_order(Request $request, $or_id){
+    	DB::table('tbl_order')->where('order_id',$or_id)->update(['order_status'=>'Finish']);
+    	Session::put('message','Shipping successfull');
+    	return Redirect::to('manage-order');
+	}
 }

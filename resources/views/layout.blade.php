@@ -194,13 +194,12 @@
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="{{URL::to('/homepage')}}" class="active">Home</a></li>
                                 <li><a href="{{URL::to('/blogpage')}}">Blog</a></li> 
-                                <li><a href="{{URL::to('/show-cart')}}">Cart</a></li>
                                 <li><a href="{{URL::to('/about-us')}}">About us</a></li>
                                 <?php $customer_id = Session::get('customer_id');
                                 if($customer_id == NULL){ ?>
-                                    <li><a href="{{URL::to('/contact-un')}}">Contact</a></li>
+                                    <li><a href="{{URL::to('/contact-un')}}">Contact Us</a></li>
                                 <?php }else{ ?>
-                                    <li><a href="{{URL::to('/contact-us/'.$customer_id)}}">Contact</a></li>
+                                    <li><a href="{{URL::to('/contact-us/'.$customer_id)}}">Contact Us</a></li>
                                 <?php } ?>
                             </ul>
                         </div>                        

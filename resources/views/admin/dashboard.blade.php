@@ -1,7 +1,7 @@
 @extends('admin_layout')
 @section('admin_content')
 <div class="col-sm-6 agile-calendar">
-	<div class="cover" style="margin-bottom: 30px;">
+	<div class="cover_" style="margin-bottom: 30px;">
 		<h3 class="text-center">WELLCOME TO MY ADMIN</h3>
 		<table style="margin-top: 30px;">
 			<tbody>
@@ -64,56 +64,55 @@
 			}
 		?>
 	</div>
-	<div class="cover">
-		<h3 class="text-center">Store view</h3>
-		<table style="margin-top: 30px; width: 100%;">
+	<div class="cover" style="margin-top: 30px; text-align: center; background-color: #eef9f0; padding: 20px 10px 30px; border-radius: 4px;">
+		<table style="width: 100%; background-color: #eef9f0; ">
+			<caption> <h3 class="text-center">Store view</h3> </caption>
+			<style>
+				.cover tbody>tr>td{
+					background: #ddede0;
+					box-shadow: 0 0 0 1px #c0dbc5;
+					padding: 10px;
+				}
+				.text-center{
+					text-transform: uppercase;	
+				}
+				.cover_{
+					background: #eef9f0;
+					box-shadow: 0 0 0 1px #c0dbc5;
+					padding: 20px 10px;
+					border-radius: 4px;
+				}
+			</style>
 			<tbody>
 				<tr>
-					<td style="width: 20%;"><b>Order:</b></td>
-					<td>
-					<?php
+					<td><b>Order</b></td>
+					<td><b>Mesage</b></td>
+					<td><b>Product</b></td>
+					<td><b>Category</b></td>
+					<td><b>Brand</b></td>
+				</tr>
+				<tr>
+					<td> <?php
 	                    $order = Session::get('order');
 	                    echo $order;
-	                ?>
-					</td>
-				</tr>
-				<tr>
-					<td style="width: 20%;"><b>Mesage:</b></td>
-					<td>
-					<?php
+	                ?> </td>
+					<td> <?php
 	                    $mesage = Session::get('mesage');
 	                    echo $mesage;
-	                ?>
-					</td>
-				</tr>
-				<tr>
-					<td style="width: 20%;"><b>Product:</b></td>
-					<td>
-					<?php
+					?> </td>
+					<td> <?php
 	                    $product = Session::get('product');
 	                    echo $product;
-	                ?>
-					</td>
-				</tr>
-				<tr>
-					<td><b>Category:</b></td>
-					<td>
-					<?php
+					?> </td>
+					<td> <?php
 	                    $category = Session::get('category');
 	                    echo $category;
-	                ?>
-					</td>
-				</tr>
-				<tr>
-					<td><b>Brand:</b></td>
-					<td>
-					<?php
+					?> </td>
+					<td> <?php
 	                    $brand = Session::get('brand');
 	                    echo $brand;
-	                ?>
-					</td>
+	                ?> </td>
 				</tr>
-				
 			</tbody>
 		</table>
 	</div>

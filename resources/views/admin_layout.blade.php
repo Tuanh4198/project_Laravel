@@ -120,7 +120,6 @@
                               <li><a href="{{URL::to('/list-brand')}}">List brand</a></li>
                           </ul>
                         </li>
-                        
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-th"></i>
@@ -131,7 +130,22 @@
                                 <li><a href="{{URL::to('/list-product')}}">List product</a></li>
                             </ul>
                         </li>
-
+                        <?php $polici = Session::get('admin_polici');
+                        if($polici == 1){ ?>
+                        <li class="sub-menu">
+                            <a href="{{URL::to('/discount-code')}}">
+                                <i class="fa fa-usd"></i>
+                                <span>Discount code</span>
+                            </a>
+                        </li>
+                        <?php }else{ ?>
+                            <li class="sub-menu">
+                            <a href="#">
+                                <i class="fa fa-usd"></i>
+                                <span>Discount code</span>
+                            </a>
+                        </li>
+                        <?php } ?>
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-bar-chart-o"></i>
@@ -142,10 +156,7 @@
                                 <li><a href="{{URL::to('/list-blog')}}">List blocg</a></li>
                             </ul>
                         </li>
-                        <?php
-                        $polici = Session::get('admin_polici');
-                        if($polici == 1){
-                        ?>
+                        <?php if($polici == 1){ ?>
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-user"></i>
@@ -156,18 +167,14 @@
                                 <li><a href="{{URL::to('/list-staff')}}">All staff</a></li>
                             </ul>
                         </li>
-                        <?php
-                        }else{
-                        ?>
-                        <li style="display: none;"></li>
-                        <?php
-                        }
-                        ?>
-                        {{--
-                        <i class="fa fa-bullhorn"></i>
-                        <i class="fa fa-tasks"></i>
-                        <i class=" fa fa-bar-chart-o"></i>
-                        --}}
+                        <?php }else{ ?>
+                        <li class="sub-menu">
+                            <a href="#">
+                                <i class="fa fa-user"></i>
+                                <span>User</span>
+                            </a>
+                        </li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <!-- sidebar menu end-->

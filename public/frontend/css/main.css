@@ -1008,7 +1008,15 @@ h2.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
-  opacity:;
+  opacity: 0.7;
+}
+.payment-table{
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-table span{
+  margin-bottom: 10px;;
 }
 
 .single-products:hover .product-overlay {
@@ -1686,7 +1694,6 @@ h2.title {
 }
 
 #cart_items .cart_info {
-  border: 1px solid #E6E4DF;
   margin-bottom: 50px
 }
 
@@ -1705,7 +1712,7 @@ h2.title {
 
 
 #cart_items .cart_info .table.table-condensed tr {
-  border-bottom: 1px solid#F7F7F0
+  border-bottom: 1px solid #f5f5f5
 }
 
 #cart_items .cart_info .table.table-condensed tr:last-child {
@@ -2071,8 +2078,8 @@ h2.title {
 }
 
 .payment-options {
-  margin-bottom:125px;
-  margin-top: -25px
+  margin-bottom:0;
+  margin-top: 0;
 }
 
 .payment-options span label {

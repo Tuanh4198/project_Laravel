@@ -67,11 +67,11 @@
 </section> <!--/#cart_items-->
 <section id="do_action">
 	<div class="container">
-		<div class="heading">
-			<h3>Payment orders</h3>
-		</div>
 		<div class="row">
 			<div class="col-sm-6">
+				<div class="heading">
+					<h3>Payment orders</h3>
+				</div>
 				<div class="total_area">
 					<ul>
 						<li>Cart Sub Total: <span style="color: black; font-weight: bold;">$.{{ Cart::subtotal() }}</span></li>
@@ -98,6 +98,9 @@
                     }
                     ?>
 				</div>
+			</div>
+			<div class="col-sm-6">
+			<img src="{{asset('public/frontend/images/cart/banner.jpg')}}" alt="" style="display: block; margin: auto; width: 100%;">
 			</div>
 		</div>
 	</div>

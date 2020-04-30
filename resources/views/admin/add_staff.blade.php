@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<section class="panel">
-			<header class="panel-heading">ADD NEW staff PRODUCT</header>
+			<header class="panel-heading">ADD NEW STAFF PRODUCT</header>
 			<div class="panel-body">
 				<div class="position-center">
 					<form role="form" action="{{URL::to('/save-staff')}}" method="post" enctype="multipart/form-data">

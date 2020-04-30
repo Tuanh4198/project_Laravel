@@ -73,6 +73,14 @@
 				</tbody>
 			</table>
 		</div>
+		<footer class="panel-footer">
+			<div class="row">
+				<div class="col-sm-12 text-right text-center-xs">
+					<a href="{{URL::to('/ship-order/'.$p_content->order_id )}}" class="btn btn-sm btn-primary">Ship now</a>
+				</div>
+			</div>
+		</footer>
+
 	</div>
 </div>
 @endsection

@@ -17,7 +17,7 @@
 							<label for="exampleInputPassword1">Describe</label>
 							<textarea name="category_describe" class="form-control" id="editor1" rows="5" style="resize: none;">{{$edit_value->category_desc}}</textarea>
 						</div>
-						<button type="submit" name="add-category" class="btn btn-info">UPDATE</button>				
+						<button type="submit" name="add-category" class="btn btn-info">UPDATE</button>
 						<input type="reset" value="Reset" class="btn btn-info"/>	
 					</form>
 					<?php

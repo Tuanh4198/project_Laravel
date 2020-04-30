@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use DB;
 use Session;
+use Illuminate\Support\Facades\Redirect;
 use Cart;
 session_start();
 
@@ -94,5 +94,53 @@ class CartController extends Controller
     public function delete_cart($rowId){
     	Cart::update($rowId, 0);
     	return Redirect::to('/show-cart');
-    }
+	}
+	
+	public function check_coupon(Request $request){
+		$zip_code = $request->discount_code;
+		$coupon = DB::table('tbl_coupon')->where('coupon_code',$zip_code)->get();
+		
+		if($coupon){
+			foreach($coupon as $key => $value){
+				$coupon_qty = $value->coupon_qty;
+				$coupon_func = $value->coupon_func;
+				$coupon_num = $value->coupon_num;
+				$coupon_code = $value->coupon_code;
+			}
+			if($coupon_qty > 0){
+				session::put('coupon',$coupon);
+				session::put('coupon_num',$coupon_num);
+				session::put('coupon_func',$coupon_func);
+				session::put('coupon_code',$coupon_code);
+				return Redirect()->back();
+			}else{
+				return Redirect()->back()->with('message','zip code out of date!');
+			}
+			// if($count_coupon > 0){
+			// 	$coupon_section = Session::get('coupon');
+			// 	if($coupon_section == true){
+			// 		$is_avalabel = 0;
+			// 		if($is_avalabel == 0){
+			// 			$cou[] = array(
+			// 				'coupon_code' => $coupon->coupon_code,
+			// 				'coupon_func' => $coupon->coupon_func,
+			// 				'coupon_num' => $coupon->coupon_num,
+			// 			);
+			// 			session::put('coupon',$cou);
+			// 		}
+			// 	}else{
+			// 		$cou[] = array(
+			// 			'coupon_code' => $coupon->coupon_code,
+			// 			'coupon_func' => $coupon->coupon_func,
+			// 			'coupon_num' => $coupon->coupon_num,
+			// 		);
+			// 		session::put('coupon',$cou);
+			// 	}
+			// 	session::save();
+			// 	return Redirect()->back()->with('message','Add zip code successful!');
+			// }
+		}else{
+			return Redirect()->back()->with('message','Zip code not found!');
+		}
+	}
 }
