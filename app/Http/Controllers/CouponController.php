@@ -67,7 +67,4 @@ class CouponController extends Controller
         Session::put('message','Delete brand successfull');
         return Redirect::to('discount-code');
     }
-
-    
-    
 }

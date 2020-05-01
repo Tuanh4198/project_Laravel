@@ -5,7 +5,7 @@
 		<h3 class="text-center">WELLCOME TO MY ADMIN</h3>
 		<table style="margin-top: 30px;">
 			<tbody>
-				<tr style="width: 10%;">
+				<tr style="width: 10%;" valign="top">
 					<td style="width: 30%; padding-right: 10px;" rowspan="4">
 						<?php $img = Session::get('staff_img'); ?>
 						<img style="width: 100%;" src="{{URL::to('public/upload/admin/'.$img)}}">
@@ -18,7 +18,7 @@
 	                ?>
 	                </td>
 				</tr>
-				<tr>
+				<tr valign="top">
 					<td><b>Email:</b></td>
 					<td>
 					<?php
@@ -27,7 +27,7 @@
 	                ?>
 					</td>
 				</tr>
-				<tr>
+				<tr valign="top">
 					<td><b>Phone:</b></td>
 					<td>
 					<?php
@@ -36,7 +36,7 @@
 	                ?>
 					</td>
 				</tr>
-				<tr>
+				<tr valign="top">
 					<td><b>Address:</b></td>
 					<td>
 					<?php

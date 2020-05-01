@@ -42,7 +42,7 @@ body a:hover{
     width:240px;
     height:100%;
     position:fixed;
-    background:rgba(52, 48, 48, 0.78);
+    background:rgba(0,0,0,.5);
     -webkit-transition:all .3s ease-in-out;
     -moz-transition:all .3s ease-in-out;
     -o-transition:all .3s ease-in-out;
@@ -60,21 +60,23 @@ body a:hover{
 }
 /*LEFT NAVIGATION ICON*/
 .dcjq-icon {
-    height:17px;
-    width:17px;
+    height:15px;
+    width:15px;
     display:inline-block;
-    background:url(../images/nav-expand.png) no-repeat top;
+    background:url(../images/next.png) no-repeat top;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     position:absolute;
     right:10px;
+    background-size: cover;
 }
 .active .dcjq-icon {
-    background:url(../images/nav-expand.png) no-repeat bottom;
+    background:url(../images/next.png) no-repeat bottom;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
+    background-size: cover;
 }
 .right-side-accordion .dcjq-icon {
     height:17px;
@@ -202,7 +204,7 @@ ul.sidebar-menu li a.active i {
     transition:all .3s ease-in-out;
 }
 .footer {
-    background: #d19a98;
+    background: #000000;
     padding: 20px;
 }
 .footer p {
@@ -219,7 +221,7 @@ ul.sidebar-menu li a.active i {
     left:0;
     right:0;
     z-index:1002;
-    background:rgb(240, 188, 180);
+    background:rgba(0,0,0,.5);
     -webkit-transition:all .3s ease-in-out;
     -moz-transition:all .3s ease-in-out;
     -o-transition:all .3s ease-in-out;
@@ -239,7 +241,7 @@ ul.sidebar-menu li a.active i {
     width:100%;
 }
 .brand {
-    background:#8b5c7e;
+    background:#ffffffb8;
     float:left;
     width:240px;
     height:80px;
@@ -2355,7 +2357,7 @@ ul.inbox-pagination li {
 }
 /*-- gallery --*/
 .w3layouts-main h2 {
-	color: #8b5c7e;
+	color: white;
     font-size: 29px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -2365,9 +2367,9 @@ ul.inbox-pagination li {
 .w3layouts-main {
     width: 30%;
     margin:5em auto;
-    background:rgba(171, 119, 157, 0.27);
+    background:#0000008a;
     padding: 42px 35px;
-    box-shadow: 5px 5px 20px 0px #311235;
+    box-shadow: 5px 5px 20px 0px #939393;
 }
 /*--//header--*/
 /*--login--*/
@@ -2438,11 +2440,12 @@ input.ggg{
     cursor: pointer;
     margin: 45px auto 31px;
     width: 100%;
-    transition: 0.4s;
-    background-image: linear-gradient(to bottom right, #ffa9a9, #a55caa);
+    transition: 0.5s;
+    border-radius: 50px;
+    background-image: linear-gradient(to bottom, #434343, #000000);
 }
 .w3layouts-main input[type="submit"]:hover {
-	background-image: linear-gradient(to top left, #ffa9a9, #a55caa);
+	background-image: linear-gradient(to top, #434343, #000000);
 }
 .w3layouts-main p a {
     color: #f0bcb4;

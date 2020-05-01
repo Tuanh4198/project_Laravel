@@ -99,8 +99,7 @@ class CartController extends Controller
 	public function check_coupon(Request $request){
 		$zip_code = $request->discount_code;
 		$coupon = DB::table('tbl_coupon')->where('coupon_code',$zip_code)->get();
-		
-		if($coupon){
+		if($coupon != ''){
 			foreach($coupon as $key => $value){
 				$coupon_qty = $value->coupon_qty;
 				$coupon_func = $value->coupon_func;
@@ -116,31 +115,31 @@ class CartController extends Controller
 			}else{
 				return Redirect()->back()->with('message','zip code out of date!');
 			}
-			// if($count_coupon > 0){
-			// 	$coupon_section = Session::get('coupon');
-			// 	if($coupon_section == true){
-			// 		$is_avalabel = 0;
-			// 		if($is_avalabel == 0){
-			// 			$cou[] = array(
-			// 				'coupon_code' => $coupon->coupon_code,
-			// 				'coupon_func' => $coupon->coupon_func,
-			// 				'coupon_num' => $coupon->coupon_num,
-			// 			);
-			// 			session::put('coupon',$cou);
-			// 		}
-			// 	}else{
-			// 		$cou[] = array(
-			// 			'coupon_code' => $coupon->coupon_code,
-			// 			'coupon_func' => $coupon->coupon_func,
-			// 			'coupon_num' => $coupon->coupon_num,
-			// 		);
-			// 		session::put('coupon',$cou);
-			// 	}
-			// 	session::save();
-			// 	return Redirect()->back()->with('message','Add zip code successful!');
-			// }
 		}else{
 			return Redirect()->back()->with('message','Zip code not found!');
 		}
 	}
 }
+// if($count_coupon > 0){
+// 	$coupon_section = Session::get('coupon');
+// 	if($coupon_section == true){
+// 		$is_avalabel = 0;
+// 		if($is_avalabel == 0){
+// 			$cou[] = array(
+// 				'coupon_code' => $coupon->coupon_code,
+// 				'coupon_func' => $coupon->coupon_func,
+// 				'coupon_num' => $coupon->coupon_num,
+// 			);
+// 			session::put('coupon',$cou);
+// 		}
+// 	}else{
+// 		$cou[] = array(
+// 			'coupon_code' => $coupon->coupon_code,
+// 			'coupon_func' => $coupon->coupon_func,
+// 			'coupon_num' => $coupon->coupon_num,
+// 		);
+// 		session::put('coupon',$cou);
+// 	}
+// 	session::save();
+// 	return Redirect()->back()->with('message','Add zip code successful!');
+// }

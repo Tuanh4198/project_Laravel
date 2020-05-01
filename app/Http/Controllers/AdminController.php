@@ -78,7 +78,7 @@ class AdminController extends Controller
 
     public function list_staff(){
         $this->authlogin();
-        $list_staff = DB::table('tbl_admins')->get();
+        $list_staff = DB::table('tbl_admins')->paginate(5);
         $manage_staff = view('admin.list_staff')->with('list_staff',$list_staff);
         return view('admin_layout')->with('admin.list_staff',$manage_staff);
     }
@@ -180,7 +180,7 @@ class AdminController extends Controller
 
     public function mesage_customer(){
         $this->authlogin();
-        $mesage = DB::table('tbl_messenger')->get();
+        $mesage = DB::table('tbl_messenger')->paginate(10);
         $manage_staff = view('admin.mesage-customer')->with('mesage',$mesage);
         return view('admin_layout')->with('admin.mesage-customer',$manage_staff);
     }

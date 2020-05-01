@@ -16,15 +16,12 @@
 			<table class="table table-striped b-t b-light">
 				<thead>
 					<tr>
-						<th style="width:20px;">
-							<label class="i-checks m-b-none">
-								<input type="checkbox"><i></i>
-							</label>
-						</th>
-						<th style="width: 20%">Customer name</th>
+						<th style="width:20px;"></th>
+						<th style="width: 20%;">Customer name</th>
 						<th>Total</th>
-						<th style="width: 10%">Order status</th>
-						<th style="width:30px;"></th>
+						<th>Date</th>
+						<th style="width: 20%;">Order status</th>
+						<th style="width: 60px;">View</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -35,8 +32,9 @@
 							<span class="text-ellipsis">{{ $lo->customer_name }}</span>
 						</td>
 						<td>{{ $lo->order_total }}</td>
+						<td>{{ $lo->created_at }}</td>
 						<td>{{ $lo->order_status }}</td>
-						<td>
+						<td style="text-align: center;">
 							<a href="{{URL::to('/view-order/'.$lo->order_id)}}" class="active" ui-toggle-class="">
 								<i class="fa fa-wrench text-success text-active"></i>
 							</a>
