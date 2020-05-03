@@ -13,8 +13,8 @@
 			<table class="table table-condensed">
 				<thead>
 					<tr class="cart_menu">
-						<td class="image">Item</td>
-						<td class="description"></td>
+						<td class="image">Image</td>
+						<td class="description">Name</td>
 						<td class="price">Price</td>
 						<td class="quantity">Quantity</td>
 						<td class="total">Total</td>
@@ -27,8 +27,8 @@
 					?>
 					@foreach($content as $key)
 					<tr class="row-product">
-						<td class="cart_product">
-							<a href=""><img src="{{URL::to('public/upload/product/'.$key->options->image)}}" alt="" width="100"></a>
+						<td class="cart_product" style="margin: 5px;">
+							<img src="{{URL::to('public/upload/product/'.$key->options->image)}}" alt="" width="100">
 						</td>
 						<td class="cart_description">
 							<h4><a href="">{{ $key->name }}</a></h4>
@@ -116,54 +116,53 @@
 								<?php } ?>
 							@endif
 						</td>
-						<td colspan="2" style="padding-top: 20px;">
-							<form action="{{URL::to('/order-place')}}" method="POST">
-								{{ csrf_field() }}
-								@if(Session::get('coupon'))
-									<?php 
-										$code = Session::get('coupon_code');
-									?>
-									<?php if(Session::get('coupon_func') == '0'){ 
-										$total =  Cart::total() - (Cart::total()/100*Session::get('coupon_num'));
-										$discount = Cart::total()/100*Session::get('coupon_num');
-									?>
-										<input type="hidden" value="<?php echo($discount); ?>" name="discount">
-										<input type="hidden" value="<?php echo($code); ?>" name="coupon_code">
-									<?php }else{
-										$total =  Cart::total() - Session::get('coupon_num');
-										$discount = Session::get('coupon_num');
-									?>
-										<input type="hidden" value="<?php echo($discount); ?>" name="discount">
-										<input type="hidden" value="<?php echo($code); ?>" name="coupon_code">
-									<?php } ?>
-								@endif
-								<div class="payment-options">
-									<p><b><h4>Select your method payment</h4></b></p>
-									<div class="payment-table">
-										<span>
-											<label><input name="payment_option" value="ATM" type="radio"> Direct bank transfer</label>
-										</span>
-										<span>
-											<label><input name="payment_option" value="money" type="radio" id="checked"> Payment on delivery</label>
-										</span>
-										<span>
-											<label><input name="payment_option" value="credit" type="radio"> Payment by credit cart </label>
-										</span>
-									</div>
-									<?php
-										$message = Session::get('message');
-										if($message){
-											echo '<span class="txt-alert" style="color:red;">',$message.'</span> <br>';
-											Session::put('message',null);
-										}
-									?>
-									<button type="submit" class="btn btn-default" style="margin-top: 20px;">Send Order</button>
-								</div>
-							</form>
-						</td>
+						<td colspan="2" style="padding-top: 20px;"> </td>
 					</tr>
 				</tbody>
 			</table>
+			<form action="{{URL::to('/order-place')}}" method="POST">
+				{{ csrf_field() }}
+				@if(Session::get('coupon'))
+					<?php 
+						$code = Session::get('coupon_code');
+					?>
+					<?php if(Session::get('coupon_func') == '0'){ 
+						$total =  Cart::total() - (Cart::total()/100*Session::get('coupon_num'));
+						$discount = Cart::total()/100*Session::get('coupon_num');
+					?>
+						<input type="hidden" value="<?php echo($discount); ?>" name="discount">
+						<input type="hidden" value="<?php echo($code); ?>" name="coupon_code">
+					<?php }else{
+						$total =  Cart::total() - Session::get('coupon_num');
+						$discount = Session::get('coupon_num');
+					?>
+						<input type="hidden" value="<?php echo($discount); ?>" name="discount">
+						<input type="hidden" value="<?php echo($code); ?>" name="coupon_code">
+					<?php } ?>
+				@endif
+				<div class="payment-options">
+					<p><b><h4>Select your method payment</h4></b></p>
+					<div class="payment-table">
+						<span>
+							<label><input name="payment_option" value="ATM" type="radio"> Direct bank transfer</label>
+						</span>
+						<span>
+							<label><input name="payment_option" value="money" type="radio" id="checked"> Payment on delivery</label>
+						</span>
+						<span>
+							<label><input name="payment_option" value="credit" type="radio"> Payment by credit cart </label>
+						</span>
+					</div>
+					<?php
+						$message = Session::get('message');
+						if($message){
+							echo '<span class="txt-alert" style="color:red;">',$message.'</span> <br>';
+							Session::put('message',null);
+						}
+					?>
+					<button type="submit" class="btn btn-default" style="margin-top: 20px;">Send Order</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </section> <!--/#cart_items-->

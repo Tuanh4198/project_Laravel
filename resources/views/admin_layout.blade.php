@@ -181,6 +181,12 @@
                             </a>
                         </li>
                         <?php } ?>
+                        <li class="sub-menu">
+                            <a href="#">
+                                <i class="fa fa-sticky-note"></i>
+                                <span>Income statistics</span>
+                            </a>
+                        </li>\
                     </ul>
                 </div>
                 <!-- sidebar menu end-->

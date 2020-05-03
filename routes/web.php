@@ -118,6 +118,7 @@ Route::post('/update-product/{pro_id}', 'ProductController@update_product');
 Route::get('/mesage-customer', 'AdminController@mesage_customer');
 //order
 Route::get('/ship-order/{or_id}', 'CheckoutController@ship_order');
+Route::get('/print-order/{or_id}', 'CheckoutController@print_order');
 // code
 Route::get('/discount-code', 'CouponController@discount_code');
 Route::post('/save-code', 'CouponController@save_code');
@@ -127,4 +128,4 @@ Route::post('/update-code/{cp_id}', 'CouponController@update_code');
 
 // php artisan make:controller SlideController
 // php artisan make:migration create_tbl_slide --create=tbl_slide
-// php artisan migrate
+// php artisan migrate 
