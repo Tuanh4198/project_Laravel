@@ -1,10 +1,10 @@
 @extends('layout')
 @section('content')
-<div class="quick-view quick-view-home"></div>
+<!-- <div class="quick-view quick-view-home"></div>
 <div class="popup">
     <img src="{{asset('public/frontend/images/home/popup.png')}}" alt="" />
     <a href="#" class="end-popup"><i class="fa fa-times"></i></a>
-</div>
+</div> -->
 <!--slider-->
 <section id="slider" class="main-slider wow zoomIn">
     <div class="slide">

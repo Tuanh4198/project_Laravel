@@ -42,7 +42,7 @@ class CartController extends Controller
 			Cart::add($data);
 			Session::put('quantity_product',$quantity_product);
 			Session::put('quantity',$quantity);
-			return Redirect::to('/show-cart');
+			return Redirect()->back();
 		}
 	}
 

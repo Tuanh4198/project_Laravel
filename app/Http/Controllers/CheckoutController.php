@@ -194,7 +194,7 @@ class CheckoutController extends Controller
 	}
 	
 	public function customer_infor(Request $request, $ct_id){
-		$this->authlogin();
+		
 		$category_name = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_name','desc')->get();
         $brand_name = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_name','desc')->get();
 		$customer = DB::table('tbl_customer')->where('customer_id',$ct_id)->get();
@@ -209,19 +209,20 @@ class CheckoutController extends Controller
 	}
 
 	public function new_customer(Request $request){
-		$this->authlogin();
+
 		$category_name = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_name','desc')->get();
 		$brand_name = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_name','desc')->get();
-		
+
 		$meta_desc = "Shiseido offers the highest quality products in brightening and anti-aging skincare, makeup and fragrance with 145 years of technology. Free samples everyday, every order. Shiseido";
         $meta_keywords = "Shiseido";
         $url_canonical = $request->url();
 		$meta_title = "SHISEIDO | Create new account";
-		
+
     	return view('pages.login-checkout.newacc')->with('category',$category_name)->with('brand',$brand_name)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('url_canonical', $url_canonical)->with('meta_title', $meta_title);
 	}
 	
 	public function ship_order(Request $request, $or_id){
+        $this->authlogin();
     	DB::table('tbl_order')->where('order_id',$or_id)->update(['order_status'=>'Finish']);
     	Session::put('message','Shipping successfull');
     	return Redirect::to('manage-order');
@@ -266,119 +267,119 @@ class CheckoutController extends Controller
 			$payment_method = $value_payment->payment_method;
 		}
 		$output = '
-	<style>
-		.panel-heading{
-			margin-bottom: 10px;
-		}
-		.table-responsive th,
-		.table-responsive td{
-			text-align: left;
-			padding: 5px 10px;
-			border: 0.5px solid grey;
-		}
-	</style
-	<h5><center> BEST JAPANESE SKIN CARE PRODUCTS SHISEIDO </center></h5> <hr/>
-	<h3><center> BILL OF SALE </center></h3>
-	<h4><center> Date: ' .$created_at. '</center></h4>
-	<div>
-		<div style="margin-bottom: 20px;">
-			<div class="panel panel-default">
-				<div class="panel-heading">CUSTOMER INFORMATION</div>
-				<div class="table-responsive">
-					<table class="table table-striped b-t b-light" style="text-align: left;">
-						<tbody>
-							<tr class="c_i">
-								<th style="width: 15%">Customer name</th>
-								<td><span class="text-ellipsis">'.$customer_name.'</span></td>
-							</tr>
-							<tr class="c_i">
-								<th style="width: 30%">Customer address</th>
-								<td>'.$customer_address.'</td>
-							</tr>
-							<tr class="c_i">
-								<th style="width: 15%">Customer phone</th>
-								<td>'.$customer_phone.'</td>
-							</tr>
-							<tr class="c_i">
-								<th style="width: 15%">Customer mail</th>
-								<td>'.$customer_email.'</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div style="margin-bottom: 20px;">
-			<div class="panel panel-default">
-				<div class="panel-heading">ORDER INFORMATION</div>
-				<div class="table-responsive">
-					<table class="table table-striped b-t b-light">
-						<tbody valign="top">
-							<tr>
-								<th style="width: 15%">Order ID</th>
-								<td style="width: 25%">'.$checkout_code.'</td>
-							</tr>
-							<tr>
-								<th style="width: 15%">Payment method</th>
-								<td style="width: 25%">'.$payment_method.'</td>
-							</tr>
-							<tr>
-								<th style="width: 15%">Status</th>
-								<td style="width: 25%">'.$order_status.'</td>
-							</tr>
-							<tr>
-								<th style="width: 15%">Order note</th>
-								<td style="width: 25%">'.$shipping_note.'</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div style="margin-bottom: 20px;">
-			<div class="panel panel-default">
-				<div class="panel-heading">VIEW ORDER DETAIL</div>
-				<div class="table-responsive">
-					<table class="table table-striped b-t b-light">
-						<thead>
-							<tr>
-								<th style="width: 25%">Product ID</th>
-								<th style="width: 25%">Product name</th>
-								<th style="width: 25%">Quantity</th>
-								<th style="width: 25%">Product price</th>
-								<th style="width: 25%">Total</th>
-							</tr>
-						</thead>
-						<tbody>';
-						foreach($order_detail as $key => $p_content){
-						$output.='
-							<tr>
-								<td>'.$p_content->product_id.'</td>
-								<td>'.$p_content->product_name.'</td>
-								<td>'.$p_content->product_sale_qty.'</td>
-								<td>'.$p_content->product_price.'$</td>
-								<td>'.($p_content->product_sale_qty * $p_content->product_price).'$</td>
-							</tr>';
-						}$output.='
-						</tbody>
-					</table>
-				</div>
-				<footer class="panel-footer">
-					<div class="row">
-						<div class="col-sm-12 text-right text-center-xs">
-							<h4 style="margin-bottom: 20px;">Sub total: <b>'.$money.'$</b></h4>
-							<h4 style="margin-bottom: 20px;">Tax: <b>'.$order_tax.'$</b></h4>
-							<h4 style="margin-bottom: 20px;">Discount: <b>'.($money+$order_tax-$order_total).'$</b></h4>
-							<hr/>
-							<h4 style="margin-bottom: 20px;">Total: <b>'.$order_total.'$</b></h4>
+			<style>
+				.panel-heading{
+					margin-bottom: 10px;
+				}
+				.table-responsive th,
+				.table-responsive td{
+					text-align: left;
+					padding: 5px 10px;
+					border: 0.5px solid grey;
+				}
+			</style
+			<h5><center> BEST JAPANESE SKIN CARE PRODUCTS SHISEIDO </center></h5> <hr/>
+			<h3><center> BILL OF SALE </center></h3>
+			<h4><center> Date: ' .$created_at. '</center></h4>
+			<div>
+				<div style="margin-bottom: 20px;">
+					<div class="panel panel-default">
+						<div class="panel-heading">CUSTOMER INFORMATION</div>
+						<div class="table-responsive">
+							<table class="table table-striped b-t b-light" style="text-align: left;">
+								<tbody>
+									<tr class="c_i">
+										<th style="width: 15%">Customer name</th>
+										<td><span class="text-ellipsis">'.$customer_name.'</span></td>
+									</tr>
+									<tr class="c_i">
+										<th style="width: 30%">Customer address</th>
+										<td>'.$customer_address.'</td>
+									</tr>
+									<tr class="c_i">
+										<th style="width: 15%">Customer phone</th>
+										<td>'.$customer_phone.'</td>
+									</tr>
+									<tr class="c_i">
+										<th style="width: 15%">Customer mail</th>
+										<td>'.$customer_email.'</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
-				</footer>
+				</div>
+				<div style="margin-bottom: 20px;">
+					<div class="panel panel-default">
+						<div class="panel-heading">ORDER INFORMATION</div>
+						<div class="table-responsive">
+							<table class="table table-striped b-t b-light">
+								<tbody valign="top">
+									<tr>
+										<th style="width: 15%">Order ID</th>
+										<td style="width: 25%">'.$checkout_code.'</td>
+									</tr>
+									<tr>
+										<th style="width: 15%">Payment method</th>
+										<td style="width: 25%">'.$payment_method.'</td>
+									</tr>
+									<tr>
+										<th style="width: 15%">Status</th>
+										<td style="width: 25%">'.$order_status.'</td>
+									</tr>
+									<tr>
+										<th style="width: 15%">Order note</th>
+										<td style="width: 25%">'.$shipping_note.'</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div style="margin-bottom: 20px;">
+					<div class="panel panel-default">
+						<div class="panel-heading">VIEW ORDER DETAIL</div>
+						<div class="table-responsive">
+							<table class="table table-striped b-t b-light">
+								<thead>
+									<tr>
+										<th style="width: 25%">Product ID</th>
+										<th style="width: 25%">Product name</th>
+										<th style="width: 25%">Quantity</th>
+										<th style="width: 25%">Product price</th>
+										<th style="width: 25%">Total</th>
+									</tr>
+								</thead>
+								<tbody>';
+								foreach($order_detail as $key => $p_content){
+								$output.='
+									<tr>
+										<td>'.$p_content->product_id.'</td>
+										<td>'.$p_content->product_name.'</td>
+										<td>'.$p_content->product_sale_qty.'</td>
+										<td>'.$p_content->product_price.'$</td>
+										<td>'.($p_content->product_sale_qty * $p_content->product_price).'$</td>
+									</tr>';
+								}$output.='
+								</tbody>
+							</table>
+						</div>
+						<footer class="panel-footer">
+							<div class="row">
+								<div class="col-sm-12 text-right text-center-xs">
+									<h4 style="margin-bottom: 20px;">Sub total: <b>'.$money.'$</b></h4>
+									<h4 style="margin-bottom: 20px;">Tax: <b>'.$order_tax.'$</b></h4>
+									<h4 style="margin-bottom: 20px;">Discount: <b>'.($money+$order_tax-$order_total).'$</b></h4>
+									<hr/>
+									<h4 style="margin-bottom: 20px;">Total: <b>'.$order_total.'$</b></h4>
+								</div>
+							</div>
+						</footer>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<hr/> <h5><center> THANKS FOR SHOPPING IN SHISEIDO SHOP </center></h5>
-	<h6><center> === SEE YOU AGAIN === </center></h6>
+			<hr/> <h5><center> THANKS FOR SHOPPING IN SHISEIDO SHOP </center></h5>
+			<h6><center> === SEE YOU AGAIN === </center></h6>
 		';
 
 		return $output;

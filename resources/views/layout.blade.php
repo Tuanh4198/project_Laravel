@@ -131,18 +131,17 @@
                             <ul class="nav navbar-nav">
 
                             <?php
-                            $customer_id = Session::get('customer_id');
-                            $shipping_id = Session::get('shipping_id');
-                            $cartsub = Cart::subtotal();
-                            if($customer_id != NULL && $shipping_id == NULL && $cartsub != 0){ ?>
-                                <li><a style="color: black" href="{{URL::to('/checkout/'.$customer_id)}}"><i style="font-size: 20px;" class="fa fa-crosshairs"></i> Checkout </a></li>
-                            <?php }elseif($customer_id != NULL && $shipping_id != NULL && $cartsub != 0){ ?>
-                                <li><a style="color: black" href="{{URL::to('/payment')}}"><i style="font-size: 20px;" class="fa fa-crosshairs"></i> Checkout </a></li>
-                            <?php }elseif($customer_id == NULL){ ?>
-                                <li><a style="color: black" href="{{URL::to('/login-checkout')}}"><i style="font-size: 20px;" class="fa fa-crosshairs"></i> Checkout </a></li>
-                            <?php }else{ ?>
-                                <li><a style="color: black" href="{{URL::to('/homepage')}}"><i style="font-size: 20px;" class="fa fa-crosshairs"></i> Checkout </a></li>
-                            <?php } ?>
+                                $customer_id = Session::get('customer_id');
+                            if($customer_id == NULL){
+                            ?>
+                                <li><a style="color: black" href="{{URL::to('/login-checkout')}}"><i class="fa fa-user"></i> Account </a></li>
+                            <?php
+                            }else{
+                            ?>
+                               <li><a style="color: black" href="{{URL::to('/customer-infor/'.$customer_id)}}"><i class="fa fa-user"></i> Account </a></li>
+                            <?php
+                            }
+                            ?>                            
 
                             <?php
                             $customer_id = Session::get('customer_id');
@@ -207,18 +206,21 @@
                     <div class="col-sm-4">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                            <?php
+                            
+                                <?php
                                 $customer_id = Session::get('customer_id');
-                            if($customer_id == NULL){
-                            ?>
-                                <li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-user"></i> Account </a></li>
-                            <?php
-                            }else{
-                            ?>
-                               <li><a href="{{URL::to('/customer-infor/'.$customer_id)}}"><i class="fa fa-user"></i> Account </a></li>
-                            <?php
-                            }
-                            ?>
+                                $shipping_id = Session::get('shipping_id');
+                                $cartsub = Cart::subtotal();
+                                if($customer_id != NULL && $shipping_id == NULL && $cartsub != 0){ ?>
+                                    <li><a style="color: white" href="{{URL::to('/checkout/'.$customer_id)}}"><i style="font-size: 20px;" class="fa fa-crosshairs"></i> Checkout </a></li>
+                                <?php }elseif($customer_id != NULL && $shipping_id != NULL && $cartsub != 0){ ?>
+                                    <li><a style="color: white" href="{{URL::to('/payment')}}"><i style="font-size: 20px;" class="fa fa-crosshairs"></i> Checkout </a></li>
+                                <?php }elseif($customer_id == NULL){ ?>
+                                    <li><a style="color: white" href="{{URL::to('/login-checkout')}}"><i style="font-size: 20px;" class="fa fa-crosshairs"></i> Checkout </a></li>
+                                <?php }else{ ?>
+                                    <li><a style="color: white" href="{{URL::to('/homepage')}}"><i style="font-size: 20px;" class="fa fa-crosshairs"></i> Checkout </a></li>
+                                <?php } ?>
+
                                 <li><a href=""><i class="fa fa-heart"></i> Wishlist</a></li>
                                 <li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             </ul>
@@ -423,8 +425,7 @@
     <script type="text/javascript">
         $(window).on('load', function(event) {
             $('body').removeClass('preloading');
-            $('.loading').delay(1000).fadeOut('fast');           
-            $('html,body').animate({scrollTop: 0}, 1000);
+            $('.loading').delay(1000).fadeOut('fast');
         });
 
         $(".autoplay").each(function() {
